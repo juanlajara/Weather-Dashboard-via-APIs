@@ -1,7 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dre's Weather Dashboard</title>
+		<!-- CSS Links -->
+		<link rel="stylesheet" href="assets/reset.css" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		/>
+		<link rel="stylesheet" href="assets/style.css" />
+	</head>
 	<body>
-		<h1>My First Heading</h1>
-		<p>My first paragraph.</p>
+		<div class="container">
+			<!-- Search Button Row -->
+			<div class="row">
+				<div class="col">
+					<form id="city-form">
+						<input id="city-input" type="text" placeholder="City" />
+						<button
+							type="button"
+							id="add-city"
+							class="city-btn btn btn-default btn-sm"
+						>
+							Search
+						</button>
+					</form>
+					<div id="buttons-view"></div>
+				</div>
+			</div>
+			<!-- Current Weather Display Row -->
+			<div class="row">
+				<div id="city-view" class="col">
+					<h2><span id="city"></span> <span id="date"></span></h2>
+					<img id="weatherIcon" src="" />
+					<p>Temperature: <span id="temperature"></span></p>
+					<p>Humidity: <span id="humidity"></span></p>
+					<p>Wind Speed: <span id="windSpeed"></span></p>
+					<p>UV Index: <span id="uvIndex"></span></p>
+				</div>
+			</div>
+		</div>
+		<!-- JS links -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script src="assets/script.js"></script>
 	</body>
 </html>
