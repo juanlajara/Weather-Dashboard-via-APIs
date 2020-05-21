@@ -1,12 +1,10 @@
 <!-- Top -->
 <h1 align='center'>Work Day Scheduler</h1>
 <h2>💡 Project Overview</h2>
-
-```
-Build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.Using the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. We will use `localStorage` to store any persistent data.
-```
-
+<p>Build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.Using the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. We will use `localStorage` to store any persistent data.
 <a href='https://juanlajara.github.io/Weather-Dashboard-via-APIs/' target='_blank'>Live Link</a>
+
+</p>
 
 <h2> ✨User Story</h2>
 
@@ -28,10 +26,7 @@ SO THAT I can plan a trip accordingly
 
 </ul>
 <h2>📓 Contributor(s)</h2>
-
-<h3>🔭 Dre Lajara</h3>
-
-<ul>
+<div>🔭 Dre Lajara </div>
     <li><a href='https://github.com/juanlajara/juanlajara.github.io' target='_blank'>GitHub</a></li>
     <li><a href='https://www.linkedin.com/in/juan-andres-lajara-179a8442' target='_blank'>LinkedIn</a></li>
     <li>juanlajara001@gmail.com</li>
@@ -43,7 +38,7 @@ SO THAT I can plan a trip accordingly
 
 <h2>⚓ Acceptance Criteria</h2>
 
-```
+<p>
 
 - GIVEN a weather dashboard with form inputs
 - WHEN I search for a city
@@ -63,8 +58,10 @@ SO THAT I can plan a trip accordingly
 
 - WHEN I open the weather dashboard
 - THEN I am presented with the last searched city forecast
-```
 
+</p>
 <h2>🎉 The following animation demonstrates the application functionality:</h2>
+
+![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
 
 ![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
