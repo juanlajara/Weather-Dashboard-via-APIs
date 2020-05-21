@@ -9,7 +9,7 @@
 
 $(document).ready(function () {
 	// My API Key
-	var appID = "e35920d296823fcdbe837c34d4e022b1";
+	var apiKey = "e35920d296823fcdbe837c34d4e022b1";
 	// Empty array for searched cities
 	var cities = [];
 
@@ -19,10 +19,10 @@ $(document).ready(function () {
 
 		// Concatinates Query URL
 		let weather =
-			"http://api.openweathermap.org/data/2.5/weather?q=" +
+			"https://openweathermap.org/api/data/2.5/weather?q=" +
 			city +
 			"&APPID=" +
-			appID;
+			apiKey;
 
 		// Gets all the city data
 		$.ajax({
