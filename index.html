@@ -13,34 +13,36 @@
 		<link rel="stylesheet" href="assets/style.css" />
 	</head>
 	<body>
+		<!-- Search Button Row -->
+		<main class="h2 text-center pt-5">Weather Dashboard</main>
 		<div class="container">
-			<!-- Search Button Row -->
-			<div class="row">
-				<div class="col">
-					<form id="city-form">
-						<input id="city-input" type="text" placeholder="City" />
-						<button type="button" id="add-city" class="city-btn btn btn-info">
-							Search
-						</button>
-					</form>
-					<div id="buttons-view"></div>
+			<form>
+				<div class="row justify-content-md-center">
+					<textarea
+						id="cityInput"
+						class="form-control col-2"
+						placeholder="City"
+					></textarea>
+					<button class="col-2 fas fa-save btn btn-primary rounded">
+						Submit
+					</button>
 				</div>
-			</div>
-			<!-- Current Weather Display Row -->
-			<div class="row">
-				<div id="city-view" class="col">
-					<h2><span id="city"></span> <span id="date"></span></h2>
-					<img id="weatherIcon" src="" />
-					<p>Temperature: <span id="temperature"></span></p>
-					<p>Humidity: <span id="humidity"></span></p>
-					<p>Wind Speed: <span id="windSpeed"></span></p>
-					<p>UV Index: <span id="uvIndex"></span></p>
-				</div>
+			</form>
+		</div>
+		<!-- Current Weather Display Row -->
+		<div class="container">
+			<div id="city-view" class="col">
+				<h2><span id="city"></span> <span id="date"></span></h2>
+				<img id="weatherIcon" src="" />
+				<p>Temperature: <span id="temperature"></span></p>
+				<p>Humidity: <span id="humidity"></span></p>
+				<p>Wind Speed: <span id="windSpeed"></span></p>
+				<p>UV Index: <span id="uvIndex"></span></p>
 			</div>
 		</div>
 		<!-- JS links -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-		<script src="assets/script.js"></script>
+		<script src="./assets/script.js"></script>
 	</body>
 </html>

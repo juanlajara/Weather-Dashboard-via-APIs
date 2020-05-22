@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 	// On click event for each button that sets a query parameter equal to the input city
 	function displayCityWeather() {
-		var city = $(".city-btn").attr("data-name");
+		var city = $("#city-input").value;
 
 		// Concatinates Query URL
 		let weather =
