@@ -14,24 +14,21 @@
 	</head>
 	<body>
 		<!-- Search Button Row -->
-		<main class="h2 text-center pt-5">Weather Dashboard</main>
-		<div class="container">
-			<form>
-				<div class="row justify-content-md-center">
-					<textarea
-						id="cityInput"
-						class="form-control col-2"
-						placeholder="City"
-					></textarea>
-					<button class="col-2 fas fa-save btn btn-primary rounded">
-						Submit
-					</button>
-				</div>
+		<main class="h1 text-center pt-5">Weather Dashboard</main>
+		<article class="container">
+			<form class="row d-flex justify-content-center">
+				<input class="col-2 form-control" type="text" placeholder="City" />
+				<button
+					class="col-2 fas fa-save btn btn-primary rounded"
+					onclick="displayCityWeather()"
+				>
+					Submit
+				</button>
 			</form>
-		</div>
+		</article>
 		<!-- Current Weather Display Row -->
 		<div class="container">
-			<div id="city-view" class="col">
+			<div id="city-view" class="col justify-content-md-center">
 				<h2><span id="city"></span> <span id="date"></span></h2>
 				<img id="weatherIcon" src="" />
 				<p>Temperature: <span id="temperature"></span></p>
