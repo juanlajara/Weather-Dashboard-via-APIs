@@ -6,10 +6,36 @@
 //   - humidity
 // 4. Add UV index data plus corresponding color
 // 5. Reformat
-var cityInput;
+// var cityInput;
 
-$("#citySubBtn").click(function () {
+var cities = JSON.parse(localStorage.getItem("cities")) || [];
+console.log(cities);
+
+$("#citySubBtn").click(function (event) {
+	event.preventDefault();
 	cityInput = $("#cityInput").val();
+	cities.push(cityInput);
+	localStorage.setItem("cities", JSON.stringify(cities));
 	// Test Value
-	cityInput = "Austin";
+	// cityInput = "Austin";
+	getCityInfo(cityInput);
 });
+//https://api.openweathermap.org/data/2.5/onecall?lat=response.city.coord.lat&lon=response.city.coord.lon&exclude=minutely,hourly&appid=e35920d296823fcdbe837c34d4e022b1
+
+cities[cities.length - 1];
+
+function getCityInfo(city) {
+	$.ajax({
+		url: `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?q=${city}&appid=e35920d296823fcdbe837c34d4e022b1`,
+		method: "GET",
+	}).then(function (response) {
+		console.log(response);
+		$.ajax({
+			url: `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=${response.city.coord.lat}&lon=${response.city.coord.lon}&exclude=minutely,hourly&appid=e35920d296823fcdbe837c34d4e022b1`,
+			method: "GET",
+		}).then(function (response) {
+			console.log(response);
+			//DOM manipulation here
+		});
+	});
+}
