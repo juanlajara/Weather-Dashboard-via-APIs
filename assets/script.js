@@ -8,7 +8,9 @@
 // 5. Reformat
 // var cityInput;
 
+// If existing City in Local Storage else create Empty cities Variable
 var cities = JSON.parse(localStorage.getItem("cities")) || [];
+
 console.log(cities);
 
 $("#citySubBtn").click(function (event) {
@@ -20,7 +22,6 @@ $("#citySubBtn").click(function (event) {
 	// cityInput = "Austin";
 	getCityInfo(cityInput);
 });
-//https://api.openweathermap.org/data/2.5/onecall?lat=response.city.coord.lat&lon=response.city.coord.lon&exclude=minutely,hourly&appid=e35920d296823fcdbe837c34d4e022b1
 
 cities[cities.length - 1];
 
