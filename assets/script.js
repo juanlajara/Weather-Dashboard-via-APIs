@@ -15,7 +15,7 @@ console.log(cities);
 
 $("#citySubBtn").click(function (event) {
 	event.preventDefault();
-	cityInput = $("#cityInput").val();
+	cityInput = $("#cityInput").val().trim();
 	cities.push(cityInput);
 	localStorage.setItem("cities", JSON.stringify(cities));
 	// Test Value
@@ -35,7 +35,8 @@ function getCityInfo(city) {
 			method: "GET",
 		}).then(function (response) {
 			//DOM manipulation
-			console.log((cityTemp = response.list[0].main.temp));
+			cityTemp = response.current.temp;
+			cityHum = response.current.humidity;
 		});
 	});
 }
