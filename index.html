@@ -15,16 +15,12 @@
 	<body>
 		<!-- Search Button Row -->
 		<main class="h1 text-center pt-5">Weather Dashboard</main>
-		<article class="container">
-			<form class="row d-flex justify-content-center">
-				<input class="col-2 form-control" type="text" placeholder="City" />
-				<button
-					class="col-2 fas fa-save btn btn-primary rounded"
-					onclick="displayCityWeather()"
-				>
-					Submit
-				</button>
-			</form>
+		<form class="form-inline d-flex justify-content-center">
+			<div class="form-group mx-sm-3 mb-2">
+			  <input type="text" class="form-control" id="cityinput" placeholder="City">
+			</div>
+			<button type="submit" class="btn btn-primary mb-2">Submit</button>
+		  </form>
 		</article>
 		<!-- Current Weather Display Row -->
 		<div class="container">
