@@ -35,8 +35,10 @@ function getCityInfo(city) {
 			method: "GET",
 		}).then(function (response) {
 			//DOM manipulation
-			cityTemp = response.current.temp;
-			cityHum = response.current.humidity;
+			cityTempVal = response.current.temp;
+			cityHumVal = response.current.humidity;
+			cityWsVal = response.current.wind_speed;
+			debugger;
 		});
 	});
 }
