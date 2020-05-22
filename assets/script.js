@@ -6,84 +6,10 @@
 //   - humidity
 // 4. Add UV index data plus corresponding color
 // 5. Reformat
-function displayCityWeather() {
-	var city = $("#cityinput").val();
+var cityInput;
 
-	// Concatinates Query URL
-	let weather =
-		"https://openweathermap.org/api/data/2.5/weather?q=" +
-		city +
-		"&APPID=" +
-		apiKey;
-
-	// Gets all the city data
-	$.ajax({
-		url: weather,
-		method: "GET",
-	}).then(function (response) {
-		console.log(city);
-		$("#city").html(response.name);
-		// Gets current date from moment
-		$("#date").html(moment().format("(MM/DD/YYYY)"));
-		$("#weatherIcon").attr(
-			"src",
-			"http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
-		);
-		// Converts from K to F and rounds to nearest int
-		$("#temperature").html(
-			Math.round(((response.main.temp - 273.15) * 9) / 5 + 32) + "°F"
-		);
-		$("#humidity").html(response.main.humidity + "%");
-		// Converts from meters per sec to miles per hour and rounds to nearest int
-		$("#windSpeed").html(Math.round(response.wind.speed * 2.237) + " MPH");
-
-		//TODO: Add UV index data
-		$("#uvIndex").html();
-	});
-}
-$(document).ready(function () {
-	// My API Key
-	var apiKey = "e35920d296823fcdbe837c34d4e022b1";
-	// Empty array for searched cities
-	var cities = [];
-
-	// On click event for each button that sets a query parameter equal to the input city
-
-	// When the city search button is clicked
-	$("#add-city").on("click", function (event) {
-		// This line grabs the input from the textbox
-		let citySearch = $("#city-input").val().trim();
-		if (citySearch !== "") {
-			// Adding city from the textbox to cities array
-			cities.push(citySearch);
-			$(".city-btn").attr("data-name", citySearch);
-			// Clears textbox
-			$("#city-input").val("");
-			renderButtons();
-		} else {
-			// This prevents submitting a blank input
-			return;
-		}
-	});
-
-	// Render past searches as buttons to the screen
-	function renderButtons() {
-		// Clear existing buttons to prevent duplicates
-		$("#buttons-view").empty();
-		// Loop through cities array
-		for (let i = 0; i < cities.length; i++) {
-			let cityBtn = $("<button>");
-			cityBtn.addClass("city-btn");
-			$(".city-btn").attr("data-name", cities[i]);
-			cityBtn.text(cities[i]);
-			// Adds the new search as a button at the top of the list
-			$("#buttons-view").prepend(cityBtn);
-		}
-	}
-
-	// Adding a click event listener to all elements with a class of "city-btn"
-	$(document).on("click", ".city-btn", displayCityWeather);
-
-	// Calling the renderButtons function to display the initial buttons
-	renderButtons();
+$("#citySubBtn").click(function () {
+	cityInput = $("#cityInput").val();
+	// Test Value
+	cityInput = "Austin";
 });
