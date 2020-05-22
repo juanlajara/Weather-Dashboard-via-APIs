@@ -30,13 +30,12 @@ function getCityInfo(city) {
 		url: `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?q=${city}&appid=e35920d296823fcdbe837c34d4e022b1`,
 		method: "GET",
 	}).then(function (response) {
-		console.log(response);
 		$.ajax({
 			url: `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=${response.city.coord.lat}&lon=${response.city.coord.lon}&exclude=minutely,hourly&appid=e35920d296823fcdbe837c34d4e022b1`,
 			method: "GET",
 		}).then(function (response) {
-			console.log(response);
-			//DOM manipulation here
+			//DOM manipulation
+			console.log((cityTemp = response.list[0].main.temp));
 		});
 	});
 }
