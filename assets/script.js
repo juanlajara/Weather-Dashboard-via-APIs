@@ -27,46 +27,47 @@ function getCityInfo(city) {
 			//DOM manipulation
 			// Render Current ForeCast
 			renderCurForeCast(response.current);
-			// Placeholder for 5 day forecast
-			$("body").append(`<div id="fivedayforecast" class="container"></div>`);
+
 			// Render Five Day Forecast
 			for (let i = 0; i < 5; i++) {
-				// Add FiveDay Elements
-				$("#fivedayforecast").append(
-					`<div id="city-view${i}" class="col justify-content-md-center">
-					<h2><span id="city${i}"></span> <span id="date${i}"></span></h2>
-					<img id="weatherIcon${i}" src="" />
-					<p>Temperature: <span id="temperature${i}"></span></p>
-					<p>Humidity: <span id="humidity${i}"></span></p>
-					<p>Wind Speed: <span id="windSpeed${i}"></span></p>
-					<p>UV Index: <span id="uvIndex${i}"></span></p>
-					</div>`
-				);
-				renderCurForeCast(response.daily, i);
+				// Placeholder for 5 day forecast
+				$("body").append(`<div id="fivedayforecast" class="container"></div>`);
+				renderFutForeCast(response.daily[i], i);
 			}
 
+			//#region function
 			function renderCurForeCast(current) {
 				// ConvertTemp from Kelvin to Fahrenheit..
-				let tempKelvin = current.temp || current.temp.max;
+				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
-				// I tried a few things but no luck. Any thoughts?
-				// $("#temperature" + `${i}`).text(tempF + " F");
-				// $(`#temperature` + `${i}`).text(tempF + " F");
-				$("#temperature" + i).text(tempF + " F");
-
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
 				$("#uvIndex").text(current.uvi);
 			}
-			// function renderFutForeCast(daily) {
-			// 	// ConvertTemp from Kelvin to Fahrenheit..
-			// 	let tempF = Math.round((daily.temp.max - 273.15) * 1.8 + 32);
-			// 	$("#temperature").text(tempF + " F");
-			// 	$("#humidity").text(daily.humidity + " %");
-			// 	$("#windSpeed").text(daily.wind_speed + " MPH");
-			// 	$("#uvIndex").text(daily.uvi);
-			// }
+
+			function renderFutForeCast(daily, index) {
+				// ConvertTemp from Kelvin to Fahrenheit..
+				let tempF = Math.round((daily.temp.max - 273.15) * 1.8 + 32);
+				$("#fivedayforecast").append(
+					`<div id="city-view${index}" class="col justify-content-md-center">
+					<h2><span id="city${index}"></span> <span id="date${index}"></span></h2>
+					<img id="weatherIcon${index}" src="" />
+					<p>Temperature: <span id="temperature${index}">${tempF + " F"}</span></p>
+					<p>Humidity: <span id="humidity${index}">${daily.humidity + " %"}</span></p>
+					<p>Wind Speed: <span id="windSpeed${index}">${
+						daily.wind_speed + " MPH"
+					}</span></p>
+					<p>UV Index: <span id="uvIndex${index}">${daily.uvi}</span></p>
+					</div>`
+				);
+
+				// $("#temperature").text(tempF + " F");
+				// $("#humidity").text(daily.humidity + " %");
+				// $("#windSpeed").text(daily.wind_speed + " MPH");
+				// $("#uvIndex").text(daily.uvi);
+			}
+			//#endregion
 		});
 	});
 }
