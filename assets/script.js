@@ -28,7 +28,6 @@ function getCityInfo(city) {
 			$("#humidity").text(response.current.humidity + " %");
 			$("#windSpeed").text(response.current.wind_speed + " MPH");
 			$("#uvIndex").text(response.current.uvi);
-			// debugger;
 		});
 	});
 }
