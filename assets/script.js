@@ -33,13 +33,13 @@ function getCityInfo(city) {
 			for (let i = 0; i < 5; i++) {
 				// Add FiveDay Elements
 				$("#fivedayforecast").append(
-					`<div id="city-view" class="col justify-content-md-center">
-					<h2><span id="city"></span> <span id="date"></span></h2>
-					<img id="weatherIcon" src="" />
-					<p>Temperature: <span id="temperature"></span></p>
-					<p>Humidity: <span id="humidity"></span></p>
-					<p>Wind Speed: <span id="windSpeed"></span></p>
-					<p>UV Index: <span id="uvIndex"></span></p>
+					`<div id="city-view${i}" class="col justify-content-md-center">
+					<h2><span id="city${i}"></span> <span id="date${i}"></span></h2>
+					<img id="weatherIcon${i}" src="" />
+					<p>Temperature: <span id="temperature${i}"></span></p>
+					<p>Humidity: <span id="humidity${i}"></span></p>
+					<p>Wind Speed: <span id="windSpeed${i}"></span></p>
+					<p>UV Index: <span id="uvIndex${i}"></span></p>
 					</div>`
 				);
 				renderCurForeCast(response.daily, i);
@@ -49,11 +49,15 @@ function getCityInfo(city) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp || current.temp.max;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
+				// I tried a few things but no luck. Any thoughts?
+				// $("#temperature" + `${i}`).text(tempF + " F");
+				// $(`#temperature` + `${i}`).text(tempF + " F");
+				$("#temperature" + i).text(tempF + " F");
+
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
 				$("#uvIndex").text(current.uvi);
-				debugger;
 			}
 			// function renderFutForeCast(daily) {
 			// 	// ConvertTemp from Kelvin to Fahrenheit..
