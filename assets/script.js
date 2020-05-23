@@ -1,17 +1,5 @@
-// 1. Save cities array to local storage so that it persists through refresh
-// 2. Create div for 5 day forecast
-// 3. Create a div (module maybe?) for each of the next 5 days
-//   - date
-//   - temp
-//   - humidity
-// 4. Add UV index data plus corresponding color
-// 5. Reformat
-// var cityInput;
-
-// If existing City in Local Storage else create Empty cities Variable
+// Check history for prior city inpiuts
 var cities = JSON.parse(localStorage.getItem("cities")) || [];
-
-console.log(cities);
 
 $("#citySubBtn").click(function (event) {
 	event.preventDefault();
@@ -35,7 +23,8 @@ function getCityInfo(city) {
 			method: "GET",
 		}).then(function (response) {
 			//DOM manipulation
-			$("#temperature").text(response.current.temp + " F");
+			let tempF = Math.round((response.current.temp - 273.15) * 1.8 + 32);
+			$("#temperature").text(tempF + " F");
 			$("#humidity").text(response.current.humidity + " %");
 			$("#windSpeed").text(response.current.wind_speed + " MPH");
 			$("#uvIndex").text(response.current.uvi);
