@@ -17,13 +17,19 @@
 		<main class="h1 text-center pt-5">Weather Dashboard</main>
 		<form class="form-inline d-flex justify-content-center">
 			<div class="form-group mx-sm-3 mb-2">
-			  <input id="cityInput" type="text" class="form-control" placeholder="City">
+				<input
+					id="cityInput"
+					type="text"
+					class="form-control"
+					placeholder="City"
+				/>
 			</div>
-			<button id="citySubBtn" type="submit" class="btn btn-primary mb-2">Submit</button>
-		  </form>
-		</article>
+			<button id="citySubBtn" type="submit" class="btn btn-primary mb-2">
+				Submit
+			</button>
+		</form>
 		<!-- Current Weather Display Row -->
-		<div class="container">
+		<div id="currentforecast" class="container">
 			<div id="city-view" class="col justify-content-md-center">
 				<h2><span id="city"></span> <span id="date"></span></h2>
 				<img id="weatherIcon" src="" />
