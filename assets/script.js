@@ -10,8 +10,6 @@ $("#citySubBtn").click(function (event) {
 	// Call the APIs
 	getCityInfo(cityInput);
 });
-// placeholder for For loop logic
-cities[cities.length - 1];
 
 function getCityInfo(city) {
 	// Get the City Forecast based on City
