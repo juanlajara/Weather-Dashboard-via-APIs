@@ -57,10 +57,12 @@ function getCityInfo(city) {
 			function renderFutForeCast(daily, index) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempF = Math.round((daily.temp.max - 273.15) * 1.8 + 32);
-				// Render 5 day Forecast and Icons
+				// Render 5 day Forecast, Date and Icons
 				$("#fivedayforecast").append(
 					`<div id="city-view${index}" class="col justify-content-md-center">
-					<h2><span id="city${index}"></span> <span class="h5" id="date${index}"></span></h2>
+					<h2><span id="city${index}"></span> <span class="h5" id="date${index}">${moment()
+						.add(index + 1, "days")
+						.format(" MM/DD/YYYY")}</span></h2>
 					<img id="weatherIcon${index}" src="https://openweathermap.org/img/wn/${
 						daily.weather[0].icon
 					}@2x.png" />
@@ -71,13 +73,6 @@ function getCityInfo(city) {
 					}</span></p>
 					<p>UV Index: <span id="uvIndex${index}">${daily.uvi}</span></p>
 					</div>`
-				);
-				// Render each date
-				let dateid = "#date" + index;
-				$(dateid).text(
-					moment()
-						.add(index + 1, "days")
-						.format(" MM/DD/YYYY")
 				);
 			}
 		});
