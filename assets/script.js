@@ -10,6 +10,7 @@ $("#citySubBtn").click(function (event) {
 	// Call the APIs
 	getCityInfo(cityInput);
 });
+
 //#region functions
 function getCityInfo(city) {
 	// Get the City Forecast based on City
