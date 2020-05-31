@@ -36,9 +36,6 @@ function getCityInfo(city) {
 			}
 
 			function renderCurForeCast(current) {
-				// ConvertTemp from Kelvin to Fahrenheit..
-				let tempKelvin = current.temp;
-				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
 				// Create Icon Based on Weather
 				$("#weatherIcon").attr(
 					"src",
@@ -46,6 +43,10 @@ function getCityInfo(city) {
 						current.weather[0].icon +
 						"@2x.png"
 				);
+				// ConvertTemp from Kelvin to Fahrenheit..
+				let tempKelvin = current.temp;
+				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
+
 				// Render Conditions to Page
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
@@ -56,11 +57,13 @@ function getCityInfo(city) {
 			function renderFutForeCast(daily, index) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempF = Math.round((daily.temp.max - 273.15) * 1.8 + 32);
-				// Render 5 day Forecast
+				// Render 5 day Forecast and Icons
 				$("#fivedayforecast").append(
 					`<div id="city-view${index}" class="col justify-content-md-center">
 					<h2><span id="city${index}"></span> <span class="h5" id="date${index}"></span></h2>
-					<img id="weatherIcon${index}" src="" />
+					<img id="weatherIcon${index}" src="https://openweathermap.org/img/wn/${
+						daily.weather[0].icon
+					}@2x.png" />
 					<p>Temperature: <span id="temperature${index}">${tempF + " F"}</span></p>
 					<p>Humidity: <span id="humidity${index}">${daily.humidity + " %"}</span></p>
 					<p>Wind Speed: <span id="windSpeed${index}">${
@@ -75,14 +78,6 @@ function getCityInfo(city) {
 					moment()
 						.add(index + 1, "days")
 						.format(" MM/DD/YYYY")
-				);
-				// Render each Icon
-				var weatherIconId = "#weatherIcon" + index;
-				$(weatherIconId).attr(
-					"src",
-					"https://openweathermap.org/img/wn/" +
-						daily.weather[0].icon +
-						"@2x.png"
 				);
 			}
 		});
