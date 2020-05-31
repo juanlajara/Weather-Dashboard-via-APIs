@@ -10,7 +10,7 @@ $("#citySubBtn").click(function (event) {
 	// Call the APIs
 	getCityInfo(cityInput);
 });
-
+//#region functions
 function getCityInfo(city) {
 	// Get the City Forecast based on City
 	$.ajax({
@@ -35,7 +35,6 @@ function getCityInfo(city) {
 				renderFutForeCast(response.daily[i], i);
 			}
 
-			//#region function
 			function renderCurForeCast(current) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
@@ -48,12 +47,12 @@ function getCityInfo(city) {
 			}
 
 			function renderFutForeCast(daily, index) {
-				$("#dayOneDate").html(moment().add(1, "days").format("(MM/DD/YYYY)"));
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempF = Math.round((daily.temp.max - 273.15) * 1.8 + 32);
+				// Render 5 day Forecast
 				$("#fivedayforecast").append(
 					`<div id="city-view${index}" class="col justify-content-md-center">
-					<h2><span id="city${index}"></span> <span id="date${index}"></span></h2>
+					<h2><span id="city${index}"></span> <span class="h5" id="date${index}"></span></h2>
 					<img id="weatherIcon${index}" src="" />
 					<p>Temperature: <span id="temperature${index}">${tempF + " F"}</span></p>
 					<p>Humidity: <span id="humidity${index}">${daily.humidity + " %"}</span></p>
@@ -63,8 +62,15 @@ function getCityInfo(city) {
 					<p>UV Index: <span id="uvIndex${index}">${daily.uvi}</span></p>
 					</div>`
 				);
+				// Render each date
+				let dateid = "#date" + index;
+				$(dateid).text(
+					moment()
+						.add(index + 1, "days")
+						.format(" MM/DD/YYYY")
+				);
 			}
-			//#endregion
 		});
 	});
 }
+//#endregion
