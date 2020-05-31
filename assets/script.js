@@ -44,6 +44,63 @@ function getCityInfo(city) {
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
 				$("#uvIndex").text(current.uvi);
+				// Create Icon Based on Weather
+				switch (current.weather[0].description) {
+					case "clear sky":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/01d@2x.png"
+						);
+						break;
+					case "few clouds":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/02d@2x.png"
+						);
+					case "scattered clouds":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/03d@2x.png"
+						);
+						break;
+					case "broken clouds":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/04d@2x.png"
+						);
+						break;
+					case "shower rain":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/09d@2x.png"
+						);
+						break;
+					case "rain":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/10d@2x.png"
+						);
+					case "thunderstorm":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/11d@2x.png"
+						);
+						break;
+					case "snow":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/13d@2x.png"
+						);
+						break;
+					case "mist":
+						$("#weatherIcon").attr(
+							"src",
+							"http://openweathermap.org/img/wn/50d@2x.png"
+						);
+						break;
+					default:
+					// code block
+				}
 			}
 
 			function renderFutForeCast(daily, index) {
