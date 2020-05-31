@@ -24,6 +24,7 @@ function getCityInfo(city) {
 		}).then(function (response) {
 			//DOM manipulation
 			// Render Current ForeCast
+			$("#city").text(city);
 			renderCurForeCast(response.current);
 			$("body").append(`<div id="fivedayforecast" class="container"></div>`);
 			$("#fivedayforecast").append(`<h2> 5 Day Future Forecast</h2>`);
@@ -60,11 +61,6 @@ function getCityInfo(city) {
 					<p>UV Index: <span id="uvIndex${index}">${daily.uvi}</span></p>
 					</div>`
 				);
-
-				// $("#temperature").text(tempF + " F");
-				// $("#humidity").text(daily.humidity + " %");
-				// $("#windSpeed").text(daily.wind_speed + " MPH");
-				// $("#uvIndex").text(daily.uvi);
 			}
 			//#endregion
 		});
