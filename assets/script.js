@@ -12,10 +12,10 @@ $("#citySubBtn").click(function (event) {
 });
 
 //#region functions
-function getCityInfo(city) {
+function getCityInfo(cityVal) {
 	// Get the City Forecast based on City
 	$.ajax({
-		url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=e35920d296823fcdbe837c34d4e022b1`,
+		url: `https://api.openweathermap.org/data/2.5/forecast?q=${cityVal}&appid=e35920d296823fcdbe837c34d4e022b1`,
 		method: "GET",
 	}).then(function (response) {
 		// Get the Forecast based on cities Lat/Long
@@ -25,8 +25,8 @@ function getCityInfo(city) {
 		}).then(function (response) {
 			//DOM manipulation
 			// Render Current ForeCast
-			$("#city").text(city);
-			$("#date").text(moment().format(" MM/DD/YYYY"));
+			$("#city").text(cityVal);
+
 			renderCurForeCast(response.current);
 			// Placeholder for 5 day forecast
 			$("body").append(`<div id="fivedayforecast" class="container"></div>`);
@@ -47,8 +47,8 @@ function getCityInfo(city) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
-
-				// Render Conditions to Page
+				// Render Date & Conditions to Page
+				$("#date").text(moment().format(" MM/DD/YYYY"));
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
