@@ -25,11 +25,12 @@ function getCityInfo(city) {
 			//DOM manipulation
 			// Render Current ForeCast
 			renderCurForeCast(response.current);
-
+			$("body").append(`<div id="fivedayforecast" class="container"></div>`);
+			$("#fivedayforecast").append(`<h2> 5 Day Future Forecast</h2>`);
 			// Render Five Day Forecast
 			for (let i = 0; i < 5; i++) {
 				// Placeholder for 5 day forecast
-				$("body").append(`<div id="fivedayforecast" class="container"></div>`);
+
 				renderFutForeCast(response.daily[i], i);
 			}
 
