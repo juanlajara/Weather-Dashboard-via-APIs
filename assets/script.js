@@ -25,13 +25,13 @@ function getCityInfo(city) {
 			//DOM manipulation
 			// Render Current ForeCast
 			$("#city").text(city);
+			$("#date").text(moment().format(" MM/DD/YYYY"));
 			renderCurForeCast(response.current);
+			// Placeholder for 5 day forecast
 			$("body").append(`<div id="fivedayforecast" class="container"></div>`);
-			$("#fivedayforecast").append(`<h2> 5 Day Future Forecast</h2>`);
+			$("#fivedayforecast").append(`<h2> Future 5 Day Forecast</h2>`);
 			// Render Five Day Forecast
 			for (let i = 0; i < 5; i++) {
-				// Placeholder for 5 day forecast
-
 				renderFutForeCast(response.daily[i], i);
 			}
 
@@ -40,6 +40,7 @@ function getCityInfo(city) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
+				// Render Conditions to Page
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
@@ -47,6 +48,7 @@ function getCityInfo(city) {
 			}
 
 			function renderFutForeCast(daily, index) {
+				$("#dayOneDate").html(moment().add(1, "days").format("(MM/DD/YYYY)"));
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempF = Math.round((daily.temp.max - 273.15) * 1.8 + 32);
 				$("#fivedayforecast").append(
