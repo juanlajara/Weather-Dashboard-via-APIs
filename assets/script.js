@@ -10,9 +10,7 @@ $("#citySubBtn").click(function (event) {
 	// Call the APIs
 	getCityInfo(cityInput);
 });
-// placeholder for For loop logic
-cities[cities.length - 1];
-
+//#region functions
 function getCityInfo(city) {
 	// Get the City Forecast based on City
 	$.ajax({
@@ -26,20 +24,29 @@ function getCityInfo(city) {
 		}).then(function (response) {
 			//DOM manipulation
 			// Render Current ForeCast
+			$("#city").text(city);
+			$("#date").text(moment().format(" MM/DD/YYYY"));
 			renderCurForeCast(response.current);
-
+			// Placeholder for 5 day forecast
+			$("body").append(`<div id="fivedayforecast" class="container"></div>`);
+			$("#fivedayforecast").append(`<h2> Future 5 Day Forecast</h2>`);
 			// Render Five Day Forecast
 			for (let i = 0; i < 5; i++) {
-				// Placeholder for 5 day forecast
-				$("body").append(`<div id="fivedayforecast" class="container"></div>`);
 				renderFutForeCast(response.daily[i], i);
 			}
 
-			//#region function
 			function renderCurForeCast(current) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
+				// Create Icon Based on Weather
+				$("#weatherIcon").attr(
+					"src",
+					"https://openweathermap.org/img/wn/" +
+						current.weather[0].icon +
+						"@2x.png"
+				);
+				// Render Conditions to Page
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
@@ -49,9 +56,10 @@ function getCityInfo(city) {
 			function renderFutForeCast(daily, index) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempF = Math.round((daily.temp.max - 273.15) * 1.8 + 32);
+				// Render 5 day Forecast
 				$("#fivedayforecast").append(
 					`<div id="city-view${index}" class="col justify-content-md-center">
-					<h2><span id="city${index}"></span> <span id="date${index}"></span></h2>
+					<h2><span id="city${index}"></span> <span class="h5" id="date${index}"></span></h2>
 					<img id="weatherIcon${index}" src="" />
 					<p>Temperature: <span id="temperature${index}">${tempF + " F"}</span></p>
 					<p>Humidity: <span id="humidity${index}">${daily.humidity + " %"}</span></p>
@@ -61,13 +69,23 @@ function getCityInfo(city) {
 					<p>UV Index: <span id="uvIndex${index}">${daily.uvi}</span></p>
 					</div>`
 				);
-
-				// $("#temperature").text(tempF + " F");
-				// $("#humidity").text(daily.humidity + " %");
-				// $("#windSpeed").text(daily.wind_speed + " MPH");
-				// $("#uvIndex").text(daily.uvi);
+				// Render each date
+				let dateid = "#date" + index;
+				$(dateid).text(
+					moment()
+						.add(index + 1, "days")
+						.format(" MM/DD/YYYY")
+				);
+				// Render each Icon
+				var weatherIconId = "#weatherIcon" + index;
+				$(weatherIconId).attr(
+					"src",
+					"https://openweathermap.org/img/wn/" +
+						daily.weather[0].icon +
+						"@2x.png"
+				);
 			}
-			//#endregion
 		});
 	});
 }
+//#endregion
