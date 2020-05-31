@@ -39,68 +39,18 @@ function getCityInfo(city) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
+				// Create Icon Based on Weather
+				$("#weatherIcon").attr(
+					"src",
+					"https://openweathermap.org/img/wn/" +
+						current.weather[0].icon +
+						"@2x.png"
+				);
 				// Render Conditions to Page
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
 				$("#uvIndex").text(current.uvi);
-				// Create Icon Based on Weather
-				switch (current.weather[0].description) {
-					case "clear sky":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/01d@2x.png"
-						);
-						break;
-					case "few clouds":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/02d@2x.png"
-						);
-					case "scattered clouds":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/03d@2x.png"
-						);
-						break;
-					case "broken clouds":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/04d@2x.png"
-						);
-						break;
-					case "shower rain":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/09d@2x.png"
-						);
-						break;
-					case "rain":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/10d@2x.png"
-						);
-					case "thunderstorm":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/11d@2x.png"
-						);
-						break;
-					case "snow":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/13d@2x.png"
-						);
-						break;
-					case "mist":
-						$("#weatherIcon").attr(
-							"src",
-							"http://openweathermap.org/img/wn/50d@2x.png"
-						);
-						break;
-					default:
-					// code block
-				}
 			}
 
 			function renderFutForeCast(daily, index) {
@@ -125,6 +75,14 @@ function getCityInfo(city) {
 					moment()
 						.add(index + 1, "days")
 						.format(" MM/DD/YYYY")
+				);
+				// Render each Icon
+				var weatherIconId = "#weatherIcon" + index;
+				$(weatherIconId).attr(
+					"src",
+					"https://openweathermap.org/img/wn/" +
+						daily.weather[0].icon +
+						"@2x.png"
 				);
 			}
 		});
