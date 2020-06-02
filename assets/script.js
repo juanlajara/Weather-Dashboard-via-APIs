@@ -7,6 +7,13 @@ $("#citySubBtn").click(function (event) {
 	cities.push(cityInput);
 	// Store current City Value in History
 	localStorage.setItem("cities", JSON.stringify(cities));
+	$(
+		"#currentforecast"
+	).append(`<div id="city-view" class="col justify-content-md-center">
+	<h2>Current Conditions for <span id="city"></span> <span id="date"></span></h2>
+	<img id="weatherIcon" src="" /><p>Temperature: <span id="temperature"></span></p>
+	<p>Humidity: <span id="humidity"></span></p><p>Wind Speed: <span id="windSpeed"></span></p>
+	<p>UV Index: <span id="uvIndex"></span></p></div>`);
 	// Call the APIs
 	getCityInfo(cityInput);
 });
@@ -44,11 +51,12 @@ function getCityInfo(cityVal) {
 						current.weather[0].icon +
 						"@2x.png"
 				);
+				// Render Date & Conditions to Page
+				$("#date").text(moment().format(" MM/DD/YYYY"));
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
-				// Render Date & Conditions to Page
-				$("#date").text(moment().format(" MM/DD/YYYY"));
+
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
