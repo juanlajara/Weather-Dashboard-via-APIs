@@ -9,7 +9,7 @@ $("#citySubBtn").click(function (event) {
 	localStorage.setItem("cities", JSON.stringify(cities));
 	$(
 		"#currentforecast"
-	).append(`<div id="city-view" class="col justify-content-md-center">
+	).append(`<div id="city-view" class="col pt-3 justify-content-md-center">
 	<h2>Current Conditions for <span id="city"></span> <span id="date"></span></h2>
 	<img id="weatherIcon" src="" /><p>Temperature: <span id="temperature"></span></p>
 	<p>Humidity: <span id="humidity"></span></p><p>Wind Speed: <span id="windSpeed"></span></p>
