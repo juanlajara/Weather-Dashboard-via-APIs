@@ -56,11 +56,23 @@ function getCityInfo(cityVal) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
-
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
 				$("#uvIndex").text(current.uvi);
+				uvIndexVal = parseInt($("#uvIndex").text());
+				// If Severe
+				if (8 <= uvIndexVal) {
+					$(uvIndex).addClass("bg-danger text-white");
+				}
+				// If Moderate
+				else if (3 <= uvIndexVal && uvIndexVal < 8) {
+					$(uvIndex).addClass("bg-warning text-dark");
+				}
+				// If Favorable
+				else {
+					$(uvIndex).addClass("bg-info text-white");
+				}
 			}
 
 			function renderFutForeCast(daily, index) {
@@ -83,6 +95,21 @@ function getCityInfo(cityVal) {
 					<p>UV Index: <span id="uvIndex${index}">${daily.uvi}</span></p>
 					</div>`
 				);
+				// Render UV Colors based Index Values
+				var uvIndexId = "#uvIndex" + `${index}`;
+				uvIndexVal = parseInt($(uvIndexId).text());
+				// If Severe
+				if (7 < uvIndexVal) {
+					$(uvIndexId).addClass("bg-danger text-white");
+				}
+				// If Moderate
+				else if (3 <= uvIndexVal && uvIndexVal < 8) {
+					$(uvIndexId).addClass("bg-warning text-dark");
+				}
+				// If Favorable
+				else {
+					$(uvIndexId).addClass("bg-info text-white");
+				}
 			}
 		});
 	});
