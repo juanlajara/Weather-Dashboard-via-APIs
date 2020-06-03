@@ -2,10 +2,12 @@
 var cities = JSON.parse(localStorage.getItem("cities")) || [];
 if (cities != "") {
 	for (let i = 0; i < Math.min(cities.length, 3); i++) {
+		// Render Last 3 Cities to User
 		$("#searchHist").append(
 			`<div class="col"><button type="button" class="btn cityHistBtn">${cities[i]}</button></div>`
 		);
 	}
+	// Render prior searched cities
 	$(".cityHistBtn").click(function (event) {
 		event.preventDefault();
 		getCityInfo($(this).text());
