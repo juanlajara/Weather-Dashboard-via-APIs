@@ -29,9 +29,10 @@ $("#citySubBtn").click(function (event) {
 
 //#region functions
 function getCityInfo(cityVal) {
-	// Render placeholder for Current Condtion Info
+	// Clean Up Stale Conditions
 	$("#currentforecast").remove();
 	$("#fivedayforecast").remove();
+	// Render placeholder for Current Condtion Info
 	$("#renderConditions").append(
 		`<div id="currentforecast" class="container">
 		<div id="city-view" class="col pt-3 justify-content-md-center">
@@ -51,7 +52,6 @@ function getCityInfo(cityVal) {
 			url: `https://api.openweathermap.org/data/2.5/onecall?lat=${response.city.coord.lat}&lon=${response.city.coord.lon}&exclude=minutely,hourly&appid=e35920d296823fcdbe837c34d4e022b1`,
 			method: "GET",
 		}).then(function (response) {
-			//DOM manipulation
 			// Render Current ForeCast
 			$("#city").text(cityVal);
 
@@ -85,6 +85,7 @@ function getCityInfo(cityVal) {
 				$("#windSpeed").text(current.wind_speed + " MPH");
 				$("#uvIndex").text(current.uvi);
 				uvIndexVal = parseInt($("#uvIndex").text());
+				// UV Color Coating
 				// If Severe
 				if (8 <= uvIndexVal) {
 					$(uvIndex).addClass("bg-danger text-white");
@@ -122,6 +123,7 @@ function getCityInfo(cityVal) {
 				// Render UV Colors based Index Values
 				var uvIndexId = "#uvIndex" + `${index}`;
 				uvIndexVal = parseInt($(uvIndexId).text());
+				// UV Color Coating
 				// If Severe
 				if (7 < uvIndexVal) {
 					$(uvIndexId).addClass("bg-danger text-white");
