@@ -6,9 +6,11 @@ if (cities != "") {
 			`<div class="col"><button type="button" class="btn cityHistBtn">${cities[i]}</button></div>`
 		);
 	}
+	$(".cityHistBtn").click(function (event) {
+		event.preventDefault();
+		getCityInfo($(this).textContent);
+	});
 }
-
-$(".cityHistBtn").click(getCityInfo($(this).text));
 
 // Listen for User submitted city
 $("#citySubBtn").click(function (event) {
@@ -17,20 +19,20 @@ $("#citySubBtn").click(function (event) {
 	cities.unshift(cityInput);
 	// Store current City Value in History
 	localStorage.setItem("cities", JSON.stringify(cities));
-	// Render placeholder for Current Condtion Info
-	$(
-		"#currentforecast"
-	).append(`<div id="city-view" class="col pt-3 justify-content-md-center">
-	<h3>Current Conditions for <span id="city"></span> <span id="date"></span></h3>
-	<img id="weatherIcon" src="" /><p>Temperature: <span id="temperature"></span></p>
-	<p>Humidity: <span id="humidity"></span></p><p>Wind Speed: <span id="windSpeed"></span></p>
-	<p>UV Index: <span id="uvIndex"></span></p></div>`);
+
 	// Call the APIs
 	getCityInfo(cityInput);
 });
 
 //#region functions
 function getCityInfo(cityVal) {
+	// Render placeholder for Current Condtion Info
+	$("#currentforecast")
+		.append(`<div id="city-view" class="col pt-3 justify-content-md-center">
+		<h3>Current Conditions for <span id="city"></span> <span id="date"></span></h3>
+		<img id="weatherIcon" src="" /><p>Temperature: <span id="temperature"></span></p>
+		<p>Humidity: <span id="humidity"></span></p><p>Wind Speed: <span id="windSpeed"></span></p>
+		<p>UV Index: <span id="uvIndex"></span></p></div>`);
 	// Get the City Forecast based on City
 	$.ajax({
 		url: `https://api.openweathermap.org/data/2.5/forecast?q=${cityVal}&appid=e35920d296823fcdbe837c34d4e022b1`,
