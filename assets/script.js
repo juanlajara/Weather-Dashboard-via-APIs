@@ -3,23 +3,25 @@ var cities = JSON.parse(localStorage.getItem("cities")) || [];
 if (cities != "") {
 	for (let i = 0; i < Math.min(cities.length, 3); i++) {
 		$("#searchHist").append(
-			`<div class="col"><button type="button" class="btn">${cities[i]}</button></div>`
+			`<div class="col"><button type="button" class="btn cityHistBtn">${cities[i]}</button></div>`
 		);
 	}
 }
+
+$(".cityHistBtn").click(getCityInfo($(this).text));
 
 // Listen for User submitted city
 $("#citySubBtn").click(function (event) {
 	event.preventDefault();
 	cityInput = $("#cityInput").val().trim();
-	cities.push(cityInput);
+	cities.unshift(cityInput);
 	// Store current City Value in History
 	localStorage.setItem("cities", JSON.stringify(cities));
 	// Render placeholder for Current Condtion Info
 	$(
 		"#currentforecast"
 	).append(`<div id="city-view" class="col pt-3 justify-content-md-center">
-	<h2>Current Conditions for <span id="city"></span> <span id="date"></span></h2>
+	<h3>Current Conditions for <span id="city"></span> <span id="date"></span></h3>
 	<img id="weatherIcon" src="" /><p>Temperature: <span id="temperature"></span></p>
 	<p>Humidity: <span id="humidity"></span></p><p>Wind Speed: <span id="windSpeed"></span></p>
 	<p>UV Index: <span id="uvIndex"></span></p></div>`);
@@ -48,7 +50,7 @@ function getCityInfo(cityVal) {
 			$("#currentforecast").append(
 				`<div id="fivedayforecast" class="container"></div>`
 			);
-			$("#fivedayforecast").append(`<h2> Future 5 Day Forecast</h2>`);
+			$("#fivedayforecast").append(`<h3> Future 5 Day Forecast</h3>`);
 			// Render Five Day Forecast
 			for (let i = 0; i < 5; i++) {
 				renderFutForeCast(response.daily[i], i);
@@ -93,9 +95,9 @@ function getCityInfo(cityVal) {
 				// Render 5 day Forecast, Date and Icons
 				$("#fivedayforecast").append(
 					`<div id="city-view${index}" class="col justify-content-md-center">
-					<h2><span id="city${index}"></span> <span class="h5" id="date${index}">${moment()
+					<h3><span id="city${index}"></span> <span class="h5" id="date${index}">${moment()
 						.add(index + 1, "days")
-						.format(" MM/DD/YYYY")}</span></h2>
+						.format(" MM/DD/YYYY")}</span></h3>
 					<img id="weatherIcon${index}" src="https://openweathermap.org/img/wn/${
 						daily.weather[0].icon
 					}@2x.png" />
