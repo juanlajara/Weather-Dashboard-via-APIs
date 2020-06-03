@@ -8,7 +8,7 @@ if (cities != "") {
 	}
 	$(".cityHistBtn").click(function (event) {
 		event.preventDefault();
-		getCityInfo($(this).textContent);
+		getCityInfo($(this).text());
 	});
 }
 
