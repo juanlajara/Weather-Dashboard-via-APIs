@@ -1,6 +1,7 @@
 // Check history for prior city inpiuts
 var cities = JSON.parse(localStorage.getItem("cities")) || [];
 if (cities != "") {
+	getCityInfo(cities[0]);
 	for (let i = 0; i < Math.min(cities.length, 3); i++) {
 		// Render Last 3 Cities to User
 		$("#searchHist").append(
