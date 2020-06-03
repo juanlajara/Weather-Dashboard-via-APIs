@@ -1,5 +1,10 @@
 // Check history for prior city inpiuts
 var cities = JSON.parse(localStorage.getItem("cities")) || [];
+for (let i = 0; i < 5; i++) {
+	$("#searchHist").append(
+		`<div class="col-1 pt-1"><button type="button" class="btn btn-info">${cities[i]}</button></div>`
+	);
+}
 // Listen for User submitted city
 $("#citySubBtn").click(function (event) {
 	event.preventDefault();
