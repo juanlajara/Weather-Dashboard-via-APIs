@@ -62,6 +62,4 @@ SO THAT I can plan a trip accordingly
 </p>
 <h2>🎉 The following animation demonstrates the application functionality:</h2>
 
-![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
-
 ![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
