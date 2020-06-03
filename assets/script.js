@@ -1,10 +1,13 @@
 // Check history for prior city inpiuts
 var cities = JSON.parse(localStorage.getItem("cities")) || [];
-for (let i = 0; i < 5; i++) {
-	$("#searchHist").append(
-		`<div class="col-1 pt-1"><button type="button" class="btn btn-info">${cities[i]}</button></div>`
-	);
+if (cities != "") {
+	for (let i = 0; i < Math.min(cities.length, 3); i++) {
+		$("#searchHist").append(
+			`<div class="col"><button type="button" class="btn">${cities[i]}</button></div>`
+		);
+	}
 }
+
 // Listen for User submitted city
 $("#citySubBtn").click(function (event) {
 	event.preventDefault();
@@ -12,6 +15,7 @@ $("#citySubBtn").click(function (event) {
 	cities.push(cityInput);
 	// Store current City Value in History
 	localStorage.setItem("cities", JSON.stringify(cities));
+	// Render placeholder for Current Condtion Info
 	$(
 		"#currentforecast"
 	).append(`<div id="city-view" class="col pt-3 justify-content-md-center">
@@ -61,6 +65,7 @@ function getCityInfo(cityVal) {
 				// ConvertTemp from Kelvin to Fahrenheit..
 				let tempKelvin = current.temp;
 				let tempF = Math.round((tempKelvin - 273.15) * 1.8 + 32);
+				// Render Current Conditions
 				$("#temperature").text(tempF + " F");
 				$("#humidity").text(current.humidity + " %");
 				$("#windSpeed").text(current.wind_speed + " MPH");
