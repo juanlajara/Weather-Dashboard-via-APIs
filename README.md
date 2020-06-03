@@ -62,4 +62,4 @@ SO THAT I can plan a trip accordingly
 </p>
 <h2>🎉 The following animation demonstrates the application functionality:</h2>
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+![weather dashboard demo](./assets/images/Dre's Weather Dashboard.gif)
